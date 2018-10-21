@@ -1,0 +1,59 @@
+buildscript {
+	ext {
+		springBootVersion = '2.0.6.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+
+/*plugins {
+    id "java"
+    id "org.springframework.boot" version "1.5.4.RELEASE"
+}*/
+
+group = 'com.hcl'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+description = """dprism"""
+
+//sourceCompatibility = 1.5
+//targetCompatibility = 1.5
+//tasks.withType(JavaCompile) {
+	//options.encoding = 'UTF-8'
+//}
+
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+	implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	compile files('libs/db2jcc4.jar')
+}
+
+/*dependencies {
+	//compile("org.springframework.boot:spring-boot-starter-web")
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version:'1.5.4.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.5.4.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version:'1.5.4.RELEASE'
+   // compile files('libs/db2jcc4.jar')
+   // testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'2.0.4.RELEASE'
+   // system group: 'db2jcc4', name: 'db2jcc4', version:'1.0'
+}*/
