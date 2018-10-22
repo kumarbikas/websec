@@ -2,6 +2,8 @@ package com.hcl.dprism.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -11,8 +13,9 @@ import javax.persistence.Table;
 @NamedQuery(name="findAllUsers",query="select um from User um")
 public class User {
 @Id
+@GeneratedValue(strategy=GenerationType.AUTO)
 @Column(name="USER_ID")
-private int userId;
+private Long userId;
 
 @Column(name="FULL_NAME")
 private String fullName;
@@ -23,11 +26,11 @@ private String emailAddress;
 @Column(name="EMPLOYEE_NUMBER")
 private String employeeNumber;
 
-public int getUserId() {
+public Long getUserId() {
 	return userId;
 }
 
-public void setUserId(int userId) {
+public void setUserId(Long userId) {
 	this.userId = userId;
 }
 
