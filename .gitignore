@@ -1,6 +1,8 @@
 build
 .gradle
 .gradle/*
+target
+target/*
 .idea
 *.iml
 ci/variables.yml

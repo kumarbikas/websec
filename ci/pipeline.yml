@@ -1,0 +1,68 @@
+---
+resources:
+- name: dprism
+  type: git
+  source:
+    uri: {{github-repository}}
+    branch: master
+    private_key: {{github-private-key}}
+
+- name: dprism-artifacts
+  type: s3
+  source:
+    bucket: {{bucket}}
+    regexp: releases/dprism-(.*).jar
+    access_key_id: {{access-key-id}}
+    secret_access_key: {{secret-access-key}}
+    endpoint: {{endpoint}}
+    skip_ssl_verification: true
+    disable_ssl: true
+
+- name: version
+  type: semver
+  source:
+    bucket: {{bucket}}
+    key: dprism/version
+    access_key_id: {{access-key-id}}
+    secret_access_key: {{secret-access-key}}
+    endpoint: {{endpoint}}
+    skip_ssl_verification: true
+    disable_ssl: true
+
+- name: dev-deployment
+  type: cf
+  source:
+    api: {{cf-api-url}}
+    username: {{cf-username}}
+    password: {{cf-password}}
+    organization: {{cf-org}}
+    space: dev
+    skip_cert_check:  true
+
+jobs:
+- name: build
+  plan:
+  - get: dprism
+    trigger: true
+  - get: version
+    params: {pre: SNAPSHOT}
+  - task: build
+    file: dprism/ci/build.yml
+  - put: dprism-artifacts
+    params:
+      file: build-output/dprism-*.jar
+  - put: version
+    params:
+      file: version/number
+
+- name: deploy-dev
+  plan:
+  - get: dprism
+    passed: [build]
+  - get: dprism-artifacts
+    trigger: false
+    passed: [build]
+  - put: dev-deployment
+    params:
+      manifest: dprism/manifest-dev.yml
+      path: dprism/dprism-*.jar

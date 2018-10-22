@@ -1,0 +1,4 @@
+---
+applications:
+- name: dprism
+  path: build/libs/dprism.jar

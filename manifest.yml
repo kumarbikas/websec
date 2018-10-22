@@ -1,0 +1,5 @@
+---
+applications:
+- name: dprism
+  path: build/libs/dprism.jar
+  memory: 756M
