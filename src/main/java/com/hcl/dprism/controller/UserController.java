@@ -69,7 +69,7 @@ public class UserController {
 	 @RequestMapping("/hello")
 	    public String hello(Model model, @RequestParam(value="name", required=false, defaultValue="World") String name) {
 	        model.addAttribute("name", name);
-	        return "hello";
+	        return "hello,This is Dprism";
 	    }
 	
 	

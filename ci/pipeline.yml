@@ -65,4 +65,4 @@ jobs:
   - put: dev-deployment
     params:
       manifest: dprism/manifest-dev.yml
-      path: dprism/dprism-*.jar
+      path: dprism-artifacts/dprism-*.jar
