@@ -45,7 +45,7 @@ jobs:
   - get: dprism
     trigger: true
   - get: version
-    params: {pre: SNAPSHOT}
+    params: {bump: patch}
   - task: build
     file: dprism/ci/build.yml
   - put: dprism-artifacts
