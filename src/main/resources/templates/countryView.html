@@ -8,6 +8,7 @@
 <title>Country List</title>
 </head>
 <body>
+<h2 align="center">Company List</h1>
  <div class="container">
   <div class="card">
 	<div class="card-block">
@@ -33,7 +34,7 @@
 	<ul class= "nav nav-pills">
 		<li class="nav-item" 
 		th:each="i : ${#numbers.sequence(0,data.totalPages-1)}">
-		<a th:href="@{/country(page=${i	})}" th:text="${i}" class="nav-link"></a>
+		<a th:href="@{/company(page=${i})}" th:text="${i}" class="nav-link"></a>
 		</li>
 	</ul>
 	</div>

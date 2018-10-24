@@ -17,7 +17,7 @@ public class CompanyController {
 	@Autowired
 	private CompanyRepository companyRepo;
 	
-	@GetMapping("/country")
+	@GetMapping("/company")
 	public String showCountry(Model model,@RequestParam(defaultValue="0")int page){		
 		model.addAttribute("data",companyRepo.findAll(PageRequest.of(page, 4)));
 		return "countryView";
