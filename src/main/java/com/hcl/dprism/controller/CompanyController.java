@@ -33,7 +33,7 @@ public class CompanyController {
 		
 	}
 	
-	@GetMapping("/delete")
+	@GetMapping("/deleteCompany")
 	public String deleteCompany(Integer companyId) {
 		companyRepo.deleteById(companyId);
 		return "redirect:/company";
