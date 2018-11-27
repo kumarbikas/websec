@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<script type="text/javascript" src="webjars/jquery/3.2.0/jquery.min.js"></script>
+<script type="text/javascript" src="webjars/bootstrap/4.1.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{js/main.js}" src="../static/js/main.js"></script>
+<link rel= "stylesheet" href="webjars/bootstrap/4.1.2/css/bootstrap.min.css"/>
+<title>DPRIZM Services List</title>
+</head>
+<body>
+<form th:action="@{/logout}" method="post">
+            <div align="left"><input type="submit" value="Sign Out" /></div>
+        </form>
+<h2 align="center">Services List</h2>
+<br/>
+ <div class="container">
+ <button class="btn btn-success nBtn" >New Service</button>
+  <div class="card">
+	<div class="card-block">
+	<table class="table table-hover">
+	<thead>
+	  <tr>
+	   <th>ServiceId</th>
+	   <th>ServiceName</th>
+	   <th>Description</th>
+	   <th>Created By</th>
+	  </tr>
+	</thead>
+	<tbody>
+		<tr th:each="services:${data.content}">
+		 	<td th:text="${services.serviceId}"></td>
+		 	<td th:text="${services.serviceName}"></td>
+		 	<td th:text="${services.description}"></td>
+		 	<td th:text="${services.createdBy}"></td>
+		 	<td><a th:href="@{/deleteServices/(serviceId=${services.serviceId})}" class="btn btn-danger delBtn">Delete Service</a>
+		 	<a th:href="@{/findOneServices/(serviceId=${services.serviceId})}" class="btn btn-primary eBtn">Edit Service</a></td>
+		</tr>
+	</tbody>
+	</table>
+	<hr/>
+	<ul class= "nav nav-pills">
+		<li class="nav-item" 
+		th:each="i : ${#numbers.sequence(1,data.totalPages)}">
+		<a th:href="@{/services(page=${(i-1)})}" th:text="${i}" class="nav-link"
+		 th:classappend="${currentPage}==${i-1}?'active'"></a>
+		</li>
+	</ul>
+	</div>
+  </div>  	
+  <!-- Adding for insertion/updation of services -->
+		<div class="servicesForm">
+		<form th:action="@{/saveServices}" method="post">
+			<div class="modal fade" id="servicesModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Update Or Create Services</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">							
+								<div class="form-group">
+									<label for="recipient-name" class="col-form-label">ID:</label>
+									<input type="text" class="form-control" id="serviceId" name="serviceId" readonly value="">
+								</div>
+								<div class="form-group">
+									<label for="recipient-name" class="col-form-label">Service Name:</label>
+									<input type="text" class="form-control" id="serviceName" name="serviceName" value="">
+								</div>
+								<div class="form-group">
+									<label for="recipient-name" class="col-form-label">Description:</label>
+									<input type="text" class="form-control" id="description" name="description" value="">
+								</div>
+								<div class="form-group">
+									<label for="recipient-name" class="col-form-label">Your Id:</label>
+									<input type="text" class="form-control" id="createdBy" name="createdBy" readonly value="">
+								</div>
+								
+								
+														
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+							<input type="submit" class="btn btn-primary" value="submit"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+		<!-- Delete Services -->
+		<div class="modal fade" id="deleteServiesModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+					 <p class="alert alert-danger">Are you sure you want to delete this Service?</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<a href= "" class="btn btn-danger"  id='delRefService'>Delete</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
