@@ -1,17 +1,17 @@
 ---
 resources:
-- name: dprism
+- name: websec
   type: git
   source:
     uri: {{github-repository}}
     branch: master
     private_key: {{github-private-key}}
 
-- name: dprism-artifacts
+- name: websec-artifacts
   type: s3
   source:
     bucket: {{bucket}}
-    regexp: releases/dprism-(.*).jar
+    regexp: releases/websec-(.*).jar
     access_key_id: {{access-key-id}}
     secret_access_key: {{secret-access-key}}
     endpoint: {{endpoint}}
@@ -22,7 +22,7 @@ resources:
   type: semver
   source:
     bucket: {{bucket}}
-    key: dprism/version
+    key: websec/version
     access_key_id: {{access-key-id}}
     secret_access_key: {{secret-access-key}}
     endpoint: {{endpoint}}
@@ -42,27 +42,27 @@ resources:
 jobs:
 - name: build
   plan:
-  - get: dprism
+  - get: websec
     trigger: true
   - get: version
     params: {bump: patch}
   - task: build
-    file: dprism/ci/build.yml
-  - put: dprism-artifacts
+    file: websec/ci/build.yml
+  - put: websec-artifacts
     params:
-      file: build-output/dprism-*.jar
+      file: build-output/websec-*.jar
   - put: version
     params:
       file: version/number
 
 - name: deploy-dev
   plan:
-  - get: dprism
+  - get: websec
     passed: [build]
-  - get: dprism-artifacts
+  - get: websec-artifacts
     trigger: false
     passed: [build]
   - put: dev-deployment
     params:
-      manifest: dprism/manifest-dev.yml
-      path: dprism-artifacts/dprism-*.jar
+      manifest: websec/manifest-dev.yml
+      path: websec-artifacts/websec-*.jar

@@ -27,7 +27,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 
-description = """dprism"""
+description = """websec"""
 
 
 repositories {

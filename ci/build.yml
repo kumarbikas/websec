@@ -7,7 +7,7 @@ image_resource:
     tag: '8-jdk'
 
 inputs:
-  - name: dprism
+  - name: websec
   - name: version
 
 outputs:
@@ -18,7 +18,7 @@ run:
   args:
   - -exc
   - |
-    cd dprism
+    cd websec
     chmod +x gradlew
     ./gradlew -P version=$(cat ../version/number) build
-    cp build/libs/dprism-*.jar ../build-output
+    cp build/libs/websec-*.jar ../build-output

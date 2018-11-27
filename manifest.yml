@@ -1,5 +1,5 @@
 ---
 applications:
-- name: dprism
-  path: build/libs/dprism.jar
+- name: websec
+  path: build/libs/websec.jar
   memory: 756M

@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.hcl</groupId>
-	<artifactId>dprism</artifactId>
+	<artifactId>websec</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>dprism</name>
+	<name>websec</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
