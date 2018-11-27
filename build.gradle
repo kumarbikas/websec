@@ -20,14 +20,12 @@ bootRun {
 }
 
 
-/*plugins {
-    id "java"
-    id "org.springframework.boot" version "1.5.4.RELEASE"
-}*/
 
 group = 'com.hcl'
 //version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 
 description = """dprism"""
 
@@ -40,6 +38,7 @@ dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
 	implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
 	implementation('org.springframework.boot:spring-boot-starter-web')
+	implementation('org.springframework.boot:spring-boot-starter-security')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	//compile files('libs/db2jcc4.jar')
 	compile fileTree(dir: 'src/lib', include: '*.jar')
