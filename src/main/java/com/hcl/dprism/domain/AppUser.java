@@ -9,9 +9,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="SX_USER_MASTER")
-@NamedQuery(name="findAllUsers",query="select um from User um")
-public class User {
+@Table(name="USER_MASTER")
+@NamedQuery(name="findAllUsers",query="select um from AppUser um")
+public class AppUser {
 @Id
 @GeneratedValue(strategy=GenerationType.AUTO)
 @Column(name="USER_ID")
@@ -25,6 +25,9 @@ private String emailAddress;
 
 @Column(name="EMPLOYEE_NUMBER")
 private String employeeNumber;
+
+@Column(name="PASSWORD")
+private String password;
 
 public Long getUserId() {
 	return userId;
@@ -50,6 +53,14 @@ public void setEmailAddress(String emailAddress) {
 	this.emailAddress = emailAddress;
 }
 
+public String getPassword() {
+	return password;
+}
+
+public void setPassword(String password) {
+	this.password = password;
+}
+
 public String getEmployeeNumber() {
 	return employeeNumber;
 }
@@ -57,4 +68,6 @@ public String getEmployeeNumber() {
 public void setEmployeeNumber(String employeeNumber) {
 	this.employeeNumber = employeeNumber;
 }
+
+
 }

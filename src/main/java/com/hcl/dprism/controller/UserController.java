@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hcl.dprism.domain.User;
+import com.hcl.dprism.domain.AppUser;
 import com.hcl.dprism.repositories.UserRepository;
 import com.hcl.dprism.service.CommonService;
 
@@ -49,20 +49,20 @@ public class UserController {
 	
 	@CrossOrigin(origins="*")
 	@GetMapping(path="/all")
-	public @ResponseBody Iterable<User> getAllUsers() {
+	public @ResponseBody Iterable<AppUser> getAllUsers() {
 		// This returns a JSON or XML with the users
 		return commonService.getAllUser();
 	}
 	
 	@CrossOrigin(origins="*")
 	@GetMapping("/userDetails")
-	public Iterable<User> getUserDetail() {
+	public Iterable<AppUser> getUserDetail() {
 		return commonService.getAllUser();
 	}
 	
 	@CrossOrigin(origins="*")
 	@PostMapping(path = "/userDetails", consumes = "application/json", produces = "application/json")
-	public void addUser	(@RequestBody User user){
+	public void addUser	(@RequestBody AppUser user){
 		commonService.addUser(user);
 	}
 	

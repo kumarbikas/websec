@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+  
+<head>
+<title>Login Page</title>
+</head>
+<body>
+<div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+<form name="loginForm" th:action="@{/login}" method="post">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<table width="30%" bgcolor="0099CC" align="center">
+
+<tr>
+<td colspan=2><center><font size=4><b>Web Security Login</b></font></center></td>
+</tr>
+
+<tr>
+<td>Username:</td>
+<td><input type="text" name="username" size="25"/></td>
+</tr>
+
+<tr>
+<td>Password:</td>
+<td><input type="Password" size=25 name="password"></td>
+</tr>
+
+<tr>
+<td ><input type="Reset"></td>
+<td><input type="submit" value="Login"></td>
+</tr>
+
+</table>
+</form>
+</body>
+</html>

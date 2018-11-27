@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hcl.dprism.domain.User;
+import com.hcl.dprism.domain.AppUser;
+
 import com.hcl.dprism.repositories.UserRepository;
 
 @Service
@@ -24,7 +25,7 @@ public class CommonServiceImpl implements CommonService {
 		// TODO Auto-generated method stub
 		// @ResponseBody means the returned String is the response, not a view name
 				// @RequestParam means it is a parameter from the GET or POST request
-		User n = new User();
+		AppUser n = new AppUser();
 		n.setFullName(name);
 		n.setEmailAddress(email);
 		userRepository.save(n);
@@ -32,13 +33,13 @@ public class CommonServiceImpl implements CommonService {
 	}
 
 	@Override
-	public void addUser(User user) {
-		((List<User>) user).add(user);
+	public void addUser(AppUser user) {
+		((List<AppUser>) user).add(user);
 		
 	}
 
 	@Override
-	public  Iterable<User> getAllUser() {
+	public  Iterable<AppUser> getAllUser() {
 		return userRepository.findAll();
 	}
 }

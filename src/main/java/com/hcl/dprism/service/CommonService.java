@@ -1,10 +1,8 @@
 package com.hcl.dprism.service;
 
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
-import com.hcl.dprism.domain.User;
+import com.hcl.dprism.domain.AppUser;
 
 
 @Service
@@ -14,9 +12,9 @@ public interface CommonService {
 	
 	String addUser(String name,String email);
 
-	void addUser(User user);
+	void addUser(AppUser user);
 
-	Iterable<User> getAllUser();
+	Iterable<AppUser> getAllUser();
 
 
 	
